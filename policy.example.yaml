@@ -1,0 +1,46 @@
+# hermes-ops policy — copy to $OPS_CONFIG_DIR/policy.yaml and edit with your
+# real values. Hot-reloaded on change. Exposed to the agent read-only at
+# config://policy. The real policy.yaml lives outside the repo (gitignored).
+
+timezone: America/Bogota
+
+calendars:
+  # alias -> Google calendar id ("primary" is the account's default calendar).
+  # Get the id from Google Calendar > Settings > <calendar> > "Integrate calendar".
+  hermes: REPLACE_WITH_YOUR_CALENDAR_ID@group.calendar.google.com
+  personal: primary
+  default: hermes
+
+# Availability for event_propose / event_create is checked across all of these.
+conflict_calendars: [hermes, personal]
+
+senders:
+  important_domains:
+    - example.edu          # your institution
+    - example.com          # your employer / key vendor
+  collaborators: []        # bare names or addresses of known collaborators
+
+keywords:
+  action:
+    - deadline
+    - urgent
+    - urgente
+    - invoice
+    - payment
+    - meeting
+    - reunión
+  noise:
+    - newsletter
+    - unsubscribe
+    - "no-reply"
+    - noreply
+    - promotion
+    - promoción
+    - marketing
+
+ingestion:
+  ics_allowlist_domains:
+    - example.edu
+    - teams.microsoft.com
+  extracted_requires_confirmation: true
+  max_future_days: 365

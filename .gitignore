@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+dist/
+build/
+*.egg-info/
+
+# never commit secrets or local state
+client_secret*.json
+google_token.json
+*.db
+*.db-wal
+*.db-shm
+.env
+secrets/
+.local/
